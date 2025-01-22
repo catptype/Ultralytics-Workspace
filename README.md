@@ -25,8 +25,8 @@ It is intended for various applications, including **license plate detection**, 
 ```plaintext
 Ultralytic-Workspace/
 ├── util/
-│   ├── Augmentation.py                 # Augmentation presets stored as Python dictionaries.
-│   └── Config.py                       # Training configuration presets stored as Python dictionaries.
+│   ├── Augmentation.py                 # Augmentation presets as Python dictionaries.
+│   └── Config.py                       # Training configuration presets as Python dictionaries.
 ├── datasets/
 │   ├── dataset_non_classification/     # Example datasets for non-classification tasks.
 │   │   ├── train/
