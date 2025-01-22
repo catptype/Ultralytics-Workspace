@@ -1,6 +1,6 @@
 # Ultralytic Workspace
 
-This repository contains Python scripts and configurations for training YOLOv11 models using the [Ultralytics](https://docs.ultralytics.com/) framework.
+This repository contains Python scripts and configurations for training YOLOv11 models using [Ultralytics](https://docs.ultralytics.com/) framework.
 The workspace is designed to handle specific tasks like **object detection**, **classification**, **object bounding box (OBB)**, and **pose estimation**.
 It is intended for various applications, including **license plate detection**, **license plate number recognition**, and more.
 
