@@ -33,13 +33,29 @@ Ultralytic-Workspace/
 │   ├── Augmentation.py                 # Contains augmentation presets stored as Python dictionaries.
 │   └── Config.py                       # Contains training configuration presets stored as Python dictionaries.
 ├── datasets/
-│   ├── dataset_detect/                 # Example dataset for detection tasks.
+│   ├── dataset_non_classification/     # Example datasets for detection, object bounding box (OBB), and pose estimation tasks.
+│   │   ├── train/
+│   │   │   ├── images/                 # Training images.
+│   │   │   │   ├── train.jpg/
+│   │   │   │   └── ...
+│   │   │   └── labels/                 # Training labels in text format.
+│   │   │       ├── train.txt/
+│   │   │       └── ...
+│   │   ├── valid/
+│   │   │   ├── images/                 # Validation images.
+│   │   │   │   ├── valid.jpg/
+│   │   │   │   └── ...
+│   │   │   └── labels/                 # Validation labels in text format.
+│   │   │       ├── valid.txt/
+│   │   │       └── ...
 │   │   └── data.yaml                   # Configuration file for non-classification datasets.
 │   ├── dataset_classify/               # Example dataset for classification tasks.
-│   ├── dataset_obb/                    # Example dataset for object bounding box tasks.
-│   │   └── data.yaml                   # Configuration file for non-classification datasets.
-│   ├── dataset_pose/                   # Example dataset for pose estimation tasks.
-│   │   └── data.yaml                   # Configuration file for non-classification datasets.
+│   │   ├── train/
+│   │   │   ├── class_name/             # Training images, grouped by class name.
+│   │   │   └── ...
+│   │   └── val/
+│   │       ├── class_name/             # Validation images, grouped by class name.
+│   │       └── ...
 │   └── ...                             # Placeholder for additional datasets.
 ├── runs/
 │   ├── detect/                         # Training results for detection tasks.
