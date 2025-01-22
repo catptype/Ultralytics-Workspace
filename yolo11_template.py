@@ -33,7 +33,7 @@ def main():
     config = TRAIN_CONFIG_PRESET[TASK]
     augmentation = AUGMENTATION_PRESET[AUGMENT_SELECTION]
     mixed_precision = 16 if config["amp"] else 32
-    model_name = f"{BASE_MODEL[TASK].replace('.pt','')}_{APPLICATION}_SEED{SEED}_FP{mixed_precision}_V"
+    model_name = f"{BASE_MODEL[TASK].replace('.pt','')}_{APPLICATION}_SEED{SEED}_FP{mixed_precision}_Ver"
 
     # Training
     model.train(

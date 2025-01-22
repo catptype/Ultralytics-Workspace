@@ -15,13 +15,12 @@ It is intended for various applications, including **license plate detection**, 
     - Pose Estimation (`pose`)
 
 2. **Ready-to-use Augmentation Presets**:
-    - License Plate Detection
-    - OCR (Optical Character Recognition)
-    - Other domain-specific applications.
+    - License Plate Detection with Keypoints
+    - License Plate Number Recognition
 
 3. **Flexible and Modular Code**:
     - Easily adapt scripts for custom datasets.
-    - Scalable for additional YOLO model tasks or applications.
+    - Scalable for additional YOLO model tasks or applications
 
 ---
 
@@ -72,24 +71,35 @@ Ultralytic-Workspace/
 
 ### Prerequisites
 
-Ensure you have the following installed:
-  ```bash
-  pip install -r requirements.txt
-  ```
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/catptype/Ultralytics-Workspace.git
+    ```
+
+2. Install the dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ### Training a Model
 
-1. **Set up the configuration file**:
-   Update task-specific YAML files in the `configs/` directory to match your dataset paths, augmentation needs, and model settings.
+1. **Copy the template file**
+    Copy the `yolo11_template.py` file and edit the following parameters:
+    - `TASK`: YOLO task type: ['classify', 'detect', 'pose', 'obb']
+    - `MODEL_SIZE`: YOLO model size: ['n', 's', 'm', 'l', 'x']
+    - `DATASET`: Name of the dataset in the 'datasets' directory
+    - `AUGMENT_SELECTION`: Select augmentation preset (see `AUGMENTATION_PRESET` in [Augmentation.py](util/Augmentation.py) for options)
+    - `APPLICATION`: Application name, used for naming the model in the 'runs' directory
+    - `SEED`: Random seed value for reproducibility
 
 2. **Run the training script**:
-   For example, to train a license plate detection model:
+   Simply run the Python file from the previous step, and everything will execute automatically
    ```bash
-   python scripts/train_detect.py --config configs/detect_license_plate.yaml
+   python yolo11_template.py
    ```
 
 3. **View Training Results**:
-   Check `results/` for model performance metrics and visualizations.
+   Check `runs/<TASK>/` directory for model performance metrics and visualizations.
 
 ---
 

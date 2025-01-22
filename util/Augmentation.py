@@ -45,8 +45,24 @@ LICENSE_PLATE_POSE = {
     "erasing": 0.05,
 }
 
+LICENSE_PLATE_OCR = {
+    "hsv_h": 0.0,
+    "hsv_s": 0.05,
+    "hsv_v": 0.05,
+    "degrees": 5.0,
+    "translate": 0.05,
+    "scale": 0.1,
+    "shear": 5.0,
+    "perspective": 0.0001,
+    "flipud": 0.0,
+    "fliplr": 0.0,
+    "mosaic": 0.0,
+    "erasing": 0.05,
+}
+
 AUGMENTATION_PRESET = {
     "none": NONE_AUGMENT,
     "basic": BASIC_AUGMENT,
     "license_plate_pose": LICENSE_PLATE_POSE,
+    "license_plate_ocr": LICENSE_PLATE_OCR,
 }
