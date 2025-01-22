@@ -4,13 +4,10 @@ This repository contains Python scripts and configurations for training YOLOv11 
 The workspace is designed to handle specific tasks like **object detection**, **classification**, **object bounding box (OBB)**, and **pose estimation**.
 It is intended for various applications, including **license plate detection**, **license plate number recognition**, and more.
 
-## 🔧 Features
+## ✨ Features
 
-1. **Task-Specific Training Configuration**:
-    - Classification (`classify`)
-    - Object Bounding Box (`obb`)
-    - Object Detection (`detect`)
-    - Pose Estimation (`pose`)
+1. **Task-Specific Training Configurations**:
+    - Includes predefined configurations for different tasks such as classification, object detection, bounding box, and pose estimation.
 
 2. **Ready-to-use Augmentation Presets**:
     - License Plate Detection with Keypoints
@@ -98,6 +95,13 @@ Ultralytic-Workspace/
 4. **View Training Results**:   
    Check `runs/<TASK>/` directory for model performance metrics and visualizations.
 
+## 🔧 Training Config Presets
+
+All training configuration presets are located in [Config.py](util/Config.py), covering the following tasks:
+- Classification (`classify`)
+- Object Bounding Box (`obb`)
+- Object Detection (`detect`)
+- Pose Estimation (`pose`)
 
 ## 🖼️ Augmentation Presets
 
@@ -106,7 +110,6 @@ This repository provides ready-to-use augmentation presets in [Augmentation.py](
 - **Basic Augmentation**: Applies slight transformations, including rotation, random horizontal flipping, and partial image erasing.  
 - **License Plate Detection**: Emphasizes brightness adjustments and orientation changes with minor transformations.  
 - **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
-
 
 ## 📄 License
 
