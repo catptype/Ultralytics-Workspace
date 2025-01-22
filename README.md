@@ -4,8 +4,6 @@ This repository contains Python scripts and configurations for training YOLOv11 
 The workspace is designed to handle specific tasks like **object detection**, **classification**, **object bounding box (OBB)**, and **pose estimation**.
 It is intended for various applications, including **license plate detection**, **license plate number recognition**, and more.
 
----
-
 ## 🔧 Features
 
 1. **Task-Specific Training Configuration**:
@@ -21,8 +19,6 @@ It is intended for various applications, including **license plate detection**, 
 3. **Flexible and Modular Code**:
     - Easily adapt scripts for custom datasets.
     - Scalable for additional YOLO model tasks or applications
-
----
 
 ## 📂 Directory Structure
 
@@ -65,8 +61,6 @@ Ultralytic-Workspace/
 └── README.md                           # Repository documentation.
 ```
 
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -101,7 +95,6 @@ Ultralytic-Workspace/
 3. **View Training Results**:   
    Check `runs/<TASK>/` directory for model performance metrics and visualizations.
 
----
 
 ## 🖼️ Augmentation Presets
 
@@ -111,16 +104,12 @@ This repository provides ready-to-use augmentation presets in [Augmentation.py](
 - **License Plate Detection**: Emphasizes brightness adjustments and orientation changes with minor transformations.  
 - **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
 
----
 
 ## 📄 License
 
 This repository is licensed under the [MIT License](LICENSE).
 
----
 
 ## 🤝 Acknowledgments
 
 Thanks to the [Ultralytics](https://ultralytics.com/) team for providing the YOLO framework, which serves as the backbone for this workspace.
-
----
