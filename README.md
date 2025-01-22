@@ -77,22 +77,25 @@ Ultralytic-Workspace/
 
 ### Training a Model
 
-1. **Copy the template file**   
-    Copy the `yolo11_template.py` file and edit the following parameters:
-    - `TASK`: YOLO task type: ['classify', 'detect', 'pose', 'obb']
-    - `MODEL_SIZE`: YOLO model size: ['n', 's', 'm', 'l', 'x']
+1. **Copy the template file**:   
+    Copy the [yolo11_template.py](yolo11_template.py) file or edit following parameters:
+    - `TASK`: YOLO task type: `'classify'`, `'detect'`, `'pose'`, `'obb'`
+    - `MODEL_SIZE`: YOLO model size: `'n'`, `'s'`, `'m'`, `'l'`, `'x'`
     - `DATASET`: Name of the dataset in the 'datasets' directory
     - `AUGMENT_SELECTION`: Select augmentation preset (see `AUGMENTATION_PRESET` in [Augmentation.py](util/Augmentation.py) for options)
     - `APPLICATION`: Application name, used for naming the model in the 'runs' directory
     - `SEED`: Random seed value for reproducibility
 
-2. **Run the training script**:   
-   Simply run the Python file from the previous step, and everything will execute automatically
+2. **Dataset preparation**:   
+    Organize your dataset according to the task-specific directory structure in the [datasets](datasets) directory.
+
+3. **Run the training script**:   
+   Simply run the Python file from the previous step, and everything will execute automatically:
    ```bash
    python yolo11_template.py
    ```
 
-3. **View Training Results**:   
+4. **View Training Results**:   
    Check `runs/<TASK>/` directory for model performance metrics and visualizations.
 
 
