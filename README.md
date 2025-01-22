@@ -83,7 +83,7 @@ Ultralytic-Workspace/
 
 ### Training a Model
 
-1. **Copy the template file**
+1. **Copy the template file**   
     Copy the `yolo11_template.py` file and edit the following parameters:
     - `TASK`: YOLO task type: ['classify', 'detect', 'pose', 'obb']
     - `MODEL_SIZE`: YOLO model size: ['n', 's', 'm', 'l', 'x']
@@ -92,24 +92,24 @@ Ultralytic-Workspace/
     - `APPLICATION`: Application name, used for naming the model in the 'runs' directory
     - `SEED`: Random seed value for reproducibility
 
-2. **Run the training script**:
+2. **Run the training script**:   
    Simply run the Python file from the previous step, and everything will execute automatically
    ```bash
    python yolo11_template.py
    ```
 
-3. **View Training Results**:
+3. **View Training Results**:   
    Check `runs/<TASK>/` directory for model performance metrics and visualizations.
 
 ---
 
 ## 🖼️ Augmentation Presets
 
-Custom augmentation presets ensure optimal performance for specific use cases:
-- **License Plate Detection**: Focus on brightness and occlusion scenarios.
-- **OCR**: Handle perspective and scaling changes to mimic real-world document scans.
-
-To apply these presets, modify the configuration file accordingly.
+This repository provides ready-to-use augmentation presets in [Augmentation.py](util/Augmentation.py) for specific use cases:  
+- **No Augmentation**: Disables all augmentation techniques.  
+- **Basic Augmentation**: Applies slight transformations, including rotation, random horizontal flipping, and partial image erasing.  
+- **License Plate Detection**: Emphasizes brightness adjustments and orientation changes with minor transformations.  
+- **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
 
 ---
 
