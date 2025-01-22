@@ -1,5 +1,20 @@
 # Read documents https://docs.ultralytics.com/modes/train/#augmentation-settings-and-hyperparameters
 
+DEFAULT_AUGMENT = {
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "erasing": 0.0,
+}
+
 NONE_AUGMENT = {
     "hsv_h": 0.0,
     "hsv_s": 0.0,
@@ -61,6 +76,7 @@ LICENSE_PLATE_OCR = {
 }
 
 AUGMENTATION_PRESET = {
+    "default": DEFAULT_AUGMENT,
     "none": NONE_AUGMENT,
     "basic": BASIC_AUGMENT,
     "license_plate_pose": LICENSE_PLATE_POSE,
