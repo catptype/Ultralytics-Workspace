@@ -111,6 +111,22 @@ This repository provides ready-to-use augmentation presets in [Augmentation.py](
 - **License Plate Detection**: Emphasizes brightness adjustments and orientation changes with minor transformations.  
 - **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
 
+## 🛠️ Troubleshooting
+
+If you encounter the error:  
+`RuntimeError: Dataset 'dataset_name/data.yaml' does not exist`  
+this usually occurs due to a misconfiguration in the settings file.
+
+To resolve this issue:
+
+1. Locate the configuration file by running the following command:  
+   ```bash
+   yolo setting
+   ```
+   This command returns the directory path to the configuration file located at `../Ultralytics/settings.json`.
+
+2. Open the `settings.json` file and update the value of the `datasets_dir` key to the correct directory path.
+
 ## 📄 License
 
 This repository is licensed under the [MIT License](LICENSE).
@@ -119,3 +135,30 @@ This repository is licensed under the [MIT License](LICENSE).
 ## 🤝 Acknowledgments
 
 Thanks to the [Ultralytics](https://ultralytics.com/) team for providing the YOLO framework, which serves as the backbone for this workspace.
+
+
+
+
+
+
+
+
+
+
+
+
+Here’s the revised README.md with improved clarity, corrected grammar, and an emoji added to the "Troubleshooting" section:
+
+```markdown
+## 🖼️ Augmentation Presets
+
+This repository provides ready-to-use augmentation presets in [Augmentation.py](util/Augmentation.py) for specific use cases:  
+- **No Augmentation**: Disables all augmentation techniques.  
+- **Basic Augmentation**: Applies slight transformations, including rotation, random horizontal flipping, and partial image erasing.  
+- **License Plate Detection**: Focuses on brightness adjustments and orientation changes with minor transformations.  
+- **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
+
+
+```
+
+Let me know if you need any further modifications!
