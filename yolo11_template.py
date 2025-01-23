@@ -42,7 +42,7 @@ def main():
         exist_ok=False,
         seed=SEED,
         device=0,
-        worker=1,
+        workers=1,
         **config,
         **augmentation,
     )
