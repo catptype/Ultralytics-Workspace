@@ -120,12 +120,19 @@ this usually occurs due to a misconfiguration in the settings file.
 To resolve this issue:
 
 1. Locate the configuration file by running the following command:  
-   ```bash
-   yolo setting
-   ```
-   This command returns the directory path to the configuration file located at `../Ultralytics/settings.json`.
+    ```bash
+    yolo setting
+    ```
+    This command returns the directory path to the configuration file located at `../Ultralytics/settings.json`.
 
-2. Open the `settings.json` file and update the value of the `datasets_dir` key to the correct directory path.
+2. Open the `settings.json` file and update the value of the `datasets_dir` key to `path\\to\\Ultralytics-Workspace` path.
+
+3. Verify the `data.yaml` file must contain
+    ```yaml
+    train: ./train/images
+    val: ./valid/images
+    test: ./test/images
+    ```
 
 ## 📄 License
 
