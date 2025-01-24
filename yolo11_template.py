@@ -29,7 +29,7 @@ def main():
 
     # Initialize
     model = YOLO(BASE_MODEL[TASK])
-    dataset = os.path.join(DATASET, 'data.yaml') if TASK in ['detect', 'pose', 'obb'] else DATASET
+    dataset = os.path.join('datasets', DATASET, 'data.yaml') if TASK in ['detect', 'pose', 'obb'] else os.path.join('datasets', DATASET)
     config = TRAIN_CONFIG_PRESET[TASK]
     augmentation = AUGMENTATION_PRESET[AUGMENT_SELECTION]
     mixed_precision = 16 if config["amp"] else 32
