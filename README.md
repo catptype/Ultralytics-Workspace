@@ -142,30 +142,3 @@ This repository is licensed under the [MIT License](LICENSE).
 ## 🤝 Acknowledgments
 
 Thanks to the [Ultralytics](https://ultralytics.com/) team for providing the YOLO framework, which serves as the backbone for this workspace.
-
-
-
-
-
-
-
-
-
-
-
-
-Here’s the revised README.md with improved clarity, corrected grammar, and an emoji added to the "Troubleshooting" section:
-
-```markdown
-## 🖼️ Augmentation Presets
-
-This repository provides ready-to-use augmentation presets in [Augmentation.py](util/Augmentation.py) for specific use cases:  
-- **No Augmentation**: Disables all augmentation techniques.  
-- **Basic Augmentation**: Applies slight transformations, including rotation, random horizontal flipping, and partial image erasing.  
-- **License Plate Detection**: Focuses on brightness adjustments and orientation changes with minor transformations.  
-- **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
-
-
-```
-
-Let me know if you need any further modifications!
