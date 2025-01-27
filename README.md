@@ -113,29 +113,29 @@ This repository provides ready-to-use augmentation presets in [Augmentation.py](
 
 ## 🛠️ Troubleshooting
 
-If you encounter the error:  
-`RuntimeError: Dataset 'dataset_name/data.yaml' does not exist`  
-this usually occurs due to the global configuration in the settings file.
+If you encounter the following error: `RuntimeError: Dataset 'dataset_name/data.yaml' does not exist`.  
+This error typically occurs due to an incorrect global configuration in the settings file.
 
-To resolve this issue:
+### How to Fix
 
-### Method 1: Change Global Configuration File
+#### Method 1: Update the Global Configuration File
 1. Locate the configuration file by running the following command:  
     ```bash
-    yolo setting
+    yolo settings
     ```
-    This command returns the directory path to the configuration file located at `../Ultralytics/settings.json`.
+    This command will display the directory path to the configuration file, usually located at `../Ultralytics/settings.json`.
 
-2. Open the `settings.json` file and update the value of the `datasets_dir` key to `path\\to\\Ultralytics-Workspace` path.
+2. Open the `settings.json` file and update the value of the `datasets_dir` key to the correct path for your Ultralytics workspace, for example: `path\\to\\Ultralytics-Workspace`
 
-### Method 2: Set Specific Dataset Path in the Dataset's .yaml Configuration File
-Verify the `data.yaml` file must contain
+#### Method 2: Specify the Dataset Path in the `data.yaml` Configuration File
+Ensure the `data.yaml` file contains the following configuration:  
 ```yaml
 path: /path/to/Ultralytics-Workspace/datasets/dataset_name
 train: ./train/images
 val: ./valid/images
 test: ./test/images
 ```
+> **Note**: The Method 2 is usually used for datasets of non-classification tasks.
 
 ## 📄 License
 
