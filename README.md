@@ -1,7 +1,7 @@
 # Ultralytic Workspace
 
 This repository contains Python scripts and configurations for training YOLOv11 models using [Ultralytics](https://docs.ultralytics.com/) framework.
-The workspace is designed to handle specific tasks like **object detection**, **classification**, **object bounding box (OBB)**, and **pose estimation**.
+The workspace is designed to handle specific tasks like **object detection**, **classification**, **oriented bounding box (OBB)**, and **pose estimation**.
 It is intended for various applications, including **license plate detection**, **license plate number recognition**, and more.
 
 ## ✨ Features
@@ -62,80 +62,157 @@ Ultralytic-Workspace/
 
 ### Prerequisites
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/catptype/Ultralytics-Workspace.git
-    ```
+Follow the steps below to set up and use the project.
 
-2. Install the dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+#### **1. Clone the Repository**  
+   Download the repository to your local machine:
+   ```bash
+   git clone https://github.com/catptype/Ultralytics-Workspace.git
+   ```
+
+#### **2. Install Dependencies**  
+   Navigate to the project directory and install the required dependencies:
+   ```bash
+   cd Ultralytics-Workspace
+   pip install -r requirements.txt
+   ```
+---
 
 ### Training a Model
 
-1. **Copy the template file**:   
-    Copy the [yolo11_template.py](yolo11_template.py) file or edit following parameters:
-    - `TASK`: YOLO task type: `'classify'`, `'detect'`, `'pose'`, `'obb'`
-    - `MODEL_SIZE`: YOLO model size: `'n'`, `'s'`, `'m'`, `'l'`, `'x'`
-    - `DATASET`: Name of the dataset in the 'datasets' directory
-    - `AUGMENT_SELECTION`: Select augmentation preset (see `AUGMENTATION_PRESET` in [Augmentation.py](util/Augmentation.py) for options)
-    - `APPLICATION`: Application name, used for naming the model in the 'runs' directory
-    - `SEED`: Random seed value for reproducibility
+#### **1. Prepare the Training Script**
 
-2. **Dataset preparation**:   
-    Organize your dataset according to the task-specific directory structure in the [datasets](datasets) directory.
+1. **Start with the Template**  
+   Use the provided [template.py](template.py) file as a starting point for your training script.
 
-3. **Run the training script**:   
-   Simply run the Python file from the previous step, and everything will execute automatically:
-   ```bash
-   python yolo11_template.py
-   ```
+2. **Edit the Parameters**  
+   Customize the following parameters in the script based on your requirements:
+    - **`TASK`**: The YOLO task type. Choose one of the following:
+        - `'classify'` for image classification
+        - `'detect'` for object detection
+        - `'pose'` for pose estimation
+        - `'obb'` for oriented bounding box
+    - **`MODEL_SIZE`**: Specify the YOLO model size: `'n'`, `'s'`, `'m'`, `'l'`, `'x'`.
+    - **`DATASET`**: The name of the dataset in the [datasets](datasets) directory.
+    - **`AUGMENT_SELECTION`**: Choose an augmentation preset (options available in `AUGMENTATION_PRESET` in [Augmentation.py](util/Augmentation.py)).
+    - **`APPLICATION`**: The application name, used to name the model and save results in the [runs](runs) directory.
+    - **`SEED`**: Set a random seed value to ensure reproducibility.
 
-4. **View Training Results**:   
-   Check `runs/<TASK>/` directory for model performance metrics and visualizations.
+3. **Adjust Additional Training Arguments**  
+   You can modify the following optional parameters in the `model.train()` method for enhanced performance:
+   - **`device`**: Specify the device to use (e.g., `0` for GPU or `cpu`).
+   - **`workers`**: Set the number of worker threads for data loading. Useful for better hardware or multiple GPUs.
 
-## 🔧 Training Config Presets
+   > **Note**: For more details on training settings, refer to Ultralytics's [documentation](https://docs.ultralytics.com/modes/train/#train-settings).
+
+#### **2. Prepare the Dataset**
+1. Organize your dataset following the task-specific directory structure.
+2. Use annotation tools to label your dataset:
+    - [**labelImg**](https://github.com/HumanSignal/labelImg): Suitable for `detect` tasks.
+   - [**labelme**](https://github.com/wkentaro/labelme): Suitable for `detect` and `pose` tasks.
+   - [**X-AnyLabeling**](https://github.com/CVHub520/X-AnyLabeling): Suitable for `detect` and `pose` tasks.
+
+   > **Note 1**: `labelImg` does not support non-English label names and will crash if such labels are used.  
+
+   > **Note 2**: `labelme` annotations are saved as **JSON** files. You will need to write a Python script to convert these annotations into YOLO-compatible `.txt` format.
+
+   > **Note 3**: `X-AnyLabeling` is more **complex tool** but offers excellent label management. it also can directly export annotations in YOLO-compatible `.txt` format.
+
+3. For tasks other than classification, include a `data.yaml` configuration file in your dataset with the following structure:
+    ```yaml
+    path: /path/to/anpr-training/datasets/dataset_name
+    train: ./train/images
+    val: ./valid/images
+    test: ./test/images
+    ```
+    > **Note**: See an example configuration file [here](datasets/example_detect_pose/data.yaml).
+
+#### **3. Run the Training Script**
+Run the Python script you prepared in Step 1 to start training:
+```bash
+python edited_template.py
+```
+
+#### **4. View Training Results**
+After training, explore the [runs](runs) directory for:
+  - Model performance metrics (e.g., accuracy, loss curves).
+  - Visualizations of the training process.
+  - Model weight files:
+    - `best.pt`: The best-performing model checkpoint.
+    - `last.pt`: The final model checkpoint.
+
+---
+
+### 🔧 Training Configuration Presets
 
 All training configuration presets are located in [Config.py](util/Config.py), covering the following tasks:
-- Classification (`classify`)
-- Object Bounding Box (`obb`)
-- Object Detection (`detect`)
-- Pose Estimation (`pose`)
+- **Classification** (`classify`)
+- **Oriented Bounding Box** (`obb`)
+- **Object Detection** (`detect`)
+- **Pose Estimation** (`pose`)
 
-## 🖼️ Augmentation Presets
+#### Key Parameters:
+- **`imgsz`**: Target image size for training.
+- **`batch`**: Batch size.
+- **`lr0`**: Initial learning rate.
+- **`lrf`**: Final learning rate as a fraction of the initial rate.
+- **`dropout`**: Dropout rate for regularization (specific to **classification** tasks).
+- **`epochs`**: Total number of training epochs.
+- **`warmup_epochs`**: Number of epochs for learning rate warmup.
+- **`patience`**: Number of epochs to wait without improvement in validation metrics before early stopping.
+- **`cache`**: Enables caching of dataset images in memory or on disk.
+- **`amp`**: Enables Automatic Mixed Precision (AMP) training.
+- **`time`**: Maximum training time (in hours).
 
-This repository provides ready-to-use augmentation presets in [Augmentation.py](util/Augmentation.py) for specific use cases:  
-- **No Augmentation**: Disables all augmentation techniques.  
-- **Basic Augmentation**: Applies slight transformations, including rotation, random horizontal flipping, and partial image erasing.  
-- **License Plate Detection**: Emphasizes brightness adjustments and orientation changes with minor transformations.  
-- **License Plate Number Recognition**: Similar to the License Plate Detection preset but with reduced hyperparameter values.
+> **Note 1**: For more details, refer to Ultralytics's [documentation](https://docs.ultralytics.com/modes/train/#train-settings).  
+
+> **Note 2**: To create a custom training configuration, declare a new constant variable as a Python dictionary and save it in `TRAIN_CONFIG_PRESET`.
+
+---
+
+### 🖼️ Augmentation Presets
+
+Predefined augmentation presets are available in [Augmentation.py](util/Augmentation.py).
+
+#### Key Augmentation Parameters:
+- **`hsv_h`**: Adjusts the **hue** of the image by a fraction.
+- **`hsv_s`**: Adjusts the **saturation** of the image by a fraction.
+- **`hsv_v`**: Adjusts the **value (brightness)** of the image by a fraction.
+- **`degrees`**: Applies random rotation to the image.
+- **`translate`**: Translates the image horizontally and vertically.
+- **`scale`**: Scales the image by a gain factor.
+- **`shear`**: Shears the image, simulating a tilted view.
+- **`perspective`**: Applies a random 3D perspective transformation.
+- **`flipud`**: Flips the image upside down with a specified probability.
+- **`fliplr`**: Flips the image left to right with a specified probability.
+- **`mosaic`**: Combines four training images into one.
+- **`erasing`**: Randomly erases a portion of the image during **classification** training.
+
+> **Note 1**: For more details, refer to Ultralytics's [documentation](https://docs.ultralytics.com/modes/train/#augmentation-settings-and-hyperparameters).  
+
+> **Note 2**: To create a custom augmentation preset, declare a new constant variable as a Python dictionary and save it in `AUGMENTATION_PRESET`.
 
 ## 🛠️ Troubleshooting
 
-If you encounter the following error: `RuntimeError: Dataset 'dataset_name/data.yaml' does not exist`.  
-This error typically occurs due to an incorrect global configuration in the settings file.
+### Issue: `RuntimeError: Dataset 'dataset_name/data.yaml' does not exist`
+This error typically occurs due to an **incorrect global configuration** in the settings file. To resolve this issue, follow these steps:
 
-### How to Fix
+1. **Locate the Configuration File**  
+   Run the following command to find the directory path of the settings file:
+   ```bash
+   yolo settings
+   ```
+   This will display the location of the configuration file, which is usually found at: `../Ultralytics/settings.json`
 
-#### Method 1: Update the Global Configuration File
-1. Locate the configuration file by running the following command:  
-    ```bash
-    yolo settings
+2. **Update the `settings.json` File**  
+    Open the `settings.json` file and update the value of the `datasets_dir` key to point to the **project's root directory**. For example:
+    ```json
+    {
+        ...
+        "datasets_dir": "path\\to\\anpr-training",
+        ...
+    }
     ```
-    This command will display the directory path to the configuration file, usually located at `../Ultralytics/settings.json`.
-
-2. Open the `settings.json` file and update the value of the `datasets_dir` key to the correct path for your Ultralytics workspace, for example: `path\\to\\Ultralytics-Workspace`
-
-#### Method 2: Specify the Dataset Path in the `data.yaml` Configuration File
-Ensure the `data.yaml` file contains the following configuration:  
-```yaml
-path: /path/to/Ultralytics-Workspace/datasets/dataset_name
-train: ./train/images
-val: ./valid/images
-test: ./test/images
-```
-> **Note**: The Method 2 is usually used for datasets of non-classification tasks.
 
 ## 📄 License
 
@@ -144,4 +221,4 @@ This repository is licensed under the [MIT License](LICENSE).
 
 ## 🤝 Acknowledgments
 
-Thanks to the [Ultralytics](https://ultralytics.com/) team for providing the YOLO framework, which serves as the backbone for this workspace.
+Thanks to the [Ultralytics](https://ultralytics.com/) for providing the YOLO framework, which serves as the backbone for this workspace.
