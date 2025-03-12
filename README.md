@@ -1,7 +1,7 @@
 # Ultralytic Workspace
 
 This repository contains Python scripts and configurations for training YOLOv11 models using [Ultralytics](https://docs.ultralytics.com/) framework.
-The workspace is designed to handle specific tasks like **object detection**, **classification**, **oriented bounding box (OBB)**, and **pose estimation**.
+The workspace is designed to handle specific tasks like **object detection**, **segmentation**, **classification**, **oriented bounding box (OBB)**, and **pose estimation**.
 It is intended for various applications, including **license plate detection**, **license plate number recognition**, and more.
 
 ## ✨ Features
@@ -51,6 +51,7 @@ Ultralytic-Workspace/
 │   └── ...                             # Placeholder for additional datasets.
 ├── runs/
 │   ├── detect/                         # Training results for detection tasks.
+│   ├── segment/                        # Training results for segmentation tasks.
 │   ├── classify/                       # Training results for classification tasks.
 │   ├── obb/                            # Training results for object bounding box tasks.
 │   └── pose/                           # Training results for pose estimation tasks.
@@ -90,6 +91,7 @@ Follow the steps below to set up and use the project.
     - **`TASK`**: The YOLO task type. Choose one of the following:
         - `'classify'` for image classification
         - `'detect'` for object detection
+        - `'segment'` for segmentation
         - `'pose'` for pose estimation
         - `'obb'` for oriented bounding box
     - **`MODEL_SIZE`**: Specify the YOLO model size: `'n'`, `'s'`, `'m'`, `'l'`, `'x'`.
@@ -109,8 +111,8 @@ Follow the steps below to set up and use the project.
 1. Organize your dataset following the task-specific directory structure.
 2. Use annotation tools to label your dataset:
     - [**labelImg**](https://github.com/HumanSignal/labelImg): Suitable for `detect` tasks.
-   - [**labelme**](https://github.com/wkentaro/labelme): Suitable for `detect` and `pose` tasks.
-   - [**X-AnyLabeling**](https://github.com/CVHub520/X-AnyLabeling): Suitable for `detect` and `pose` tasks.
+   - [**labelme**](https://github.com/wkentaro/labelme): Suitable for `detect`, `segment`, and `pose` tasks.
+   - [**X-AnyLabeling**](https://github.com/CVHub520/X-AnyLabeling): Suitable for `detect`, `segment`, and `pose` tasks.
 
    > **Note 1**: `labelImg` does not support non-English label names and will crash if such labels are used.  
 
@@ -147,6 +149,7 @@ After training, explore the [runs](runs) directory for:
 
 All training configuration presets are located in [Config.py](util/Config.py), covering the following tasks:
 - **Classification** (`classify`)
+- **Segmentation** (`segment`)
 - **Oriented Bounding Box** (`obb`)
 - **Object Detection** (`detect`)
 - **Pose Estimation** (`pose`)

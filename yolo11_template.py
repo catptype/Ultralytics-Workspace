@@ -4,7 +4,7 @@ from util.Config import TRAIN_CONFIG_PRESET
 from util.Augmentation import AUGMENTATION_PRESET
 
 # EDIT HERE
-TASK = 'classify'           # YOLO task type: ['classify', 'detect', 'pose', 'obb']
+TASK = 'classify'           # YOLO task type: ['classify', 'detect', 'segment, 'pose', 'obb']
 MODEL_SIZE = 'n'            # YOLO model size: ['n', 's', 'm', 'l', 'x']
 DATASET = ''                # Name of the dataset in the 'datasets' directory
 AUGMENT_SELECTION = 'none'  # Select augmentation preset (see AUGMENTATION_PRESET for options)
@@ -15,6 +15,7 @@ SEED = 0                    # Random seed value for reproducibility
 BASE_MODEL = {
     'classify': f'yolo11{MODEL_SIZE}-cls.pt',
     'detect': f'yolo11{MODEL_SIZE}.pt',
+    'segment': f'yolo11{MODEL_SIZE}-seg.pt',
     'pose': f'yolo11{MODEL_SIZE}-pose.pt',
     'obb': f'yolo11{MODEL_SIZE}-obb.pt',
 }
@@ -29,11 +30,11 @@ def main():
 
     # Initialize
     model = YOLO(BASE_MODEL[TASK])
-    dataset = os.path.join('datasets', DATASET, 'data.yaml') if TASK in ['detect', 'pose', 'obb'] else os.path.join('datasets', DATASET)
+    dataset = os.path.join('datasets', DATASET, 'data.yaml') if TASK in ['detect', 'segment', 'pose', 'obb'] else os.path.join('datasets', DATASET)
     config = TRAIN_CONFIG_PRESET[TASK]
     augmentation = AUGMENTATION_PRESET[AUGMENT_SELECTION]
     mixed_precision = 16 if config["amp"] else 32
-    model_name = f"{BASE_MODEL[TASK].replace('.pt','')}_{APPLICATION}_SEED{SEED}_FP{mixed_precision}_Ver"
+    model_name = f"{BASE_MODEL[TASK].replace('.pt','')}_{APPLICATION}_SEED{SEED}_{config['imgsz']}_FP{mixed_precision}_Ver"
 
     # Training
     model.train(
